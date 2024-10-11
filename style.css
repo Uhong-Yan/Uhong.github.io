@@ -51,3 +51,8 @@ footer {
     background: #333;
     color: white;
 }
+.selected {
+    background: white; 
+    color: #4CAF50; 
+    border: 1px solid #4CAF50; 
+}
