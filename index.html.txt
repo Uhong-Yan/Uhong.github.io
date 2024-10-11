@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食物測驗</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>食物選擇測驗</h1>
+    </header>
+    <main>
+        <div id="quiz-container">
+            <div class="question">
+                <p>1. 咖哩飯拌不拌？</p>
+                <button onclick="selectAnswer('curry')">拌</button>
+                <button onclick="selectAnswer('not-curry')">不拌</button>
+            </div>
+            <div class="question">
+                <p>2. 花生捲冰淇淋加不加香菜？</p>
+                <button onclick="selectAnswer('peanut')">加</button>
+                <button onclick="selectAnswer('not-peanut')">不加</button>
+            </div>
+            <div class="question">
+                <p>3. 大珍珠還是小珍珠？</p>
+                <button onclick="selectAnswer('big')">大珍珠</button>
+                <button onclick="selectAnswer('small')">小珍珠</button>
+            </div>
+            <div class="question">
+                <p>4. 拉麵吃硬麵還是軟麵？</p>
+                <button onclick="selectAnswer('hard')">硬麵</button>
+                <button onclick="selectAnswer('soft')">軟麵</button>
+            </div>
+            <button id="submit-button" onclick="showResult()">提交</button>
+        </div>
+        <div id="result" class="hidden">
+            <h2>你真懂吃！</h2>
+            <p>感謝參加測驗！</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 食物測驗</p>
+    </footer>
+    <script>
+        function selectAnswer(answer) {
+            // 這裡可以收集用戶的選擇
+            console.log(answer);
+        }
+        
+        function showResult() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('result').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
