@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>食物測驗</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -12,6 +13,9 @@
     </header>
     <main>
         <div id="quiz-container">
+            <!-- 顯示回答進度 -->
+            <p id="answered-status">已回答：0 / 4</p>
+
             <div class="question">
                 <p>1. 咖哩飯拌不拌？</p>
                 <button onclick="selectAnswer(this, 'curry')">拌</button>
@@ -43,25 +47,49 @@
     <footer>
         <p>&copy; 2024 食物測驗</p>
     </footer>
+    
     <script>
+        // 這裡是原有的 JavaScript 功能
         function selectAnswer(button, answer) {
-            // 這裡可以收集用戶的選擇
             console.log(answer);
-            
-            // 先把同一問題中的所有按鈕恢復為原來的樣式
             const buttons = button.parentElement.querySelectorAll('button');
             buttons.forEach(btn => {
                 btn.classList.remove('selected');
             });
-
-            // 將被選中的按鈕變為白色
             button.classList.add('selected');
         }
-        
+
         function showResult() {
             document.getElementById('quiz-container').style.display = 'none';
             document.getElementById('result').classList.remove('hidden');
         }
+
+        // jQuery 程式碼區
+        $(document).ready(function() {
+            // 點擊按鈕時添加縮放效果
+            $("button").on("mousedown", function() {
+                $(this).animate({ scale: '0.95' }, 100);  // 縮小效果
+            }).on("mouseup", function() {
+                $(this).animate({ scale: '1' }, 100);  // 回復原狀
+            });
+
+            // 提交按鈕滑動顯示結果區
+            $("#submit-button").click(function() {
+                $("#quiz-container").fadeOut(300, function() {
+                    $("#result").slideDown();
+                });
+            });
+
+            // 顯示回答統計
+            let answeredCount = 0;
+            $(".question button").click(function() {
+                if (!$(this).hasClass("answered")) {
+                    answeredCount++;
+                    $(this).addClass("answered");
+                }
+                $("#answered-status").text("已回答：" + answeredCount + " / 4");
+            });
+        });
     </script>
 </body>
 </html>
